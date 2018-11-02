@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>demo</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        .main {
+            width: 160px;
+            height: 160px;
+            background-image: url('time.jpg');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            margin: 400px auto;
+            position: relative;
+        }
+
+        .hour {
+            border: 2px solid red;
+            width: 35px;
+            position: absolute;
+            top: 80px;
+            left: 80px;
+            -webkit-transform-origin: left center;
+            transform: rotate(50deg);
+        }
+
+        .min {
+            border: 2px solid black;
+            width: 45px;
+            position: absolute;
+            top: 80px;
+            left: 80px;
+            -webkit-transform-origin: left center;
+            transform: rotate(80deg);
+        }
+
+        .sec {
+            border: 2px solid green;
+            width: 50px;
+            position: absolute;
+            top: 80px;
+            left: 80px;
+            -webkit-transform-origin: left center;
+            transform: rotate(210deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="hour"></div>
+        <div class="min"></div>
+        <div class="sec"></div>
+    </div>
+    <script>
+        let t = new Date();
+        let h = t.getHours();
+        let m = t.getMinutes();
+        let s = t.getSeconds();
+
+        function clock() {
+            s++
+            if (s == 60) {
+                s = 0;
+                m++;
+            }
+            if (m == 60) {
+                m = 0;
+                h++
+            }
+            let rotateH = (h * 360 / 12 - 90) + 'deg';
+            let rotateM = (m * 360 / 60 - 90) + 'deg';
+            let rotateS = (s * 360 / 60 - 90) + 'deg';
+            $('.sec').css("transform", `rotate(${rotateS})`)
+            $('.hour').css("transform", `rotate(${rotateH})`)
+            $('.min').css("transform", `rotate(${rotateM})`)
+        }
+
+        setInterval(clock, 1000);
+    </script>
+
+</body>
+
+</html>
