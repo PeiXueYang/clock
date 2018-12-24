@@ -13,6 +13,10 @@
 知道这个规则 设计算法
 
 function calculate (min,hour) {
+
+  let min = parseInt(min)
+  let hour = parseInt(hour)
+  
   /**
       0<= min <= 60
       0<= hour <= 12
